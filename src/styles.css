@@ -1,0 +1,14 @@
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+/* Seçilen butonun stil kuralları */
+button.active {
+    background-color: #0056b3;
+}
