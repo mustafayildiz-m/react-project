@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles.css';
+
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
@@ -12,17 +14,20 @@ const Categories = () => {
                 const quotes = response.data;
                 const uniqueCategories = Array.from(new Set(quotes.map(quote => quote.category)));
                 setCategories(uniqueCategories.filter(category => category !== null));
+                setQuotes(quotes);
             })
             .catch(error => {
                 console.error('Kategoriler alınırken bir hata oluştu:', error);
             });
     }, []);
 
+    const [quotes, setQuotes] = useState([]);
+
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
-        const quotesInCategory = categories.filter(cat => cat === category);
+        const quotesInCategory = quotes.filter(quote => quote.category === category);
         const randomIndex = Math.floor(Math.random() * quotesInCategory.length);
-        setRandomQuote(quotesInCategory[randomIndex]);
+        setRandomQuote(quotesInCategory[randomIndex].text);
     };
 
     return (
@@ -35,7 +40,7 @@ const Categories = () => {
                         onClick={() => handleCategoryClick(category)}
                         className={selectedCategory === category ? 'active' : ''}
                     >
-                        {category}
+                        Teklif Al
                     </button>
                 ))}
             </div>
@@ -49,3 +54,4 @@ const Categories = () => {
 };
 
 export default Categories;
+

@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Categories from './Categories';
+import Search from './Search';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const MainPage = () => {
+    // Ana sayfa bileşeninizin içeriği buraya gelecek
+    return (
+        <div>
+            <h1>Ana Sayfa İçeriği</h1>
+            {/* Ana sayfa içeriğini buraya ekleyin */}
+        </div>
+    );
+};
+
+const App = () => {
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Ana Sayfa</Link>
+                        </li>
+                        <li>
+                            <Link to="/categories">Kategoriler</Link>
+                        </li>
+                        <li>
+                            <Link to="/search">Search</Link>
+                        </li>
+                    </ul>
+                </nav>
+
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/categories" element={<Categories />} />
+                    <Route exact path="/search" element={<Search/>} />
+
+                </Routes>
+            </div>
+        </Router>
+    );
+};
 
 export default App;
